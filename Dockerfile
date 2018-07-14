@@ -18,7 +18,11 @@ RUN pip3 install --upgrade pip
 RUN pip install \
     jupyter \
     numpy \
-    tqdm
+    tqdm \
+    pillow \
+    tensorflow==1.7.1 \
+    h5py \
+    keras
 
 RUN ln -s /usr/bin/python3.6 /usr/bin/python
 
