@@ -1,0 +1,31 @@
+{% extends "bootstrap/base.html" %}
+{% block content %}
+<form method="post" action="{{ url_for('retrieval') }}" enctype="multipart/form-data">
+  Select image<input type="file" id="img_data" name="img_data">
+  <input type="submit" value="Send">
+</form>
+  <div>
+    {% if query_url %}
+    <h3>query image: "{{ query_url }}"</h3>
+    <p><img src="{{ query_url }}"></p>
+    {% endif %}
+  </div>
+  <div>
+    {% if img_url1 %}
+    <p>top1: "{{ img_url1 }}"</p>
+    <p><img src="{{ img_url1 }}"></p>
+    {% endif %}
+  </div>
+  <div>
+    {% if img_url2 %}
+    <p>top2: "{{ img_url2 }}"</p>
+    <p><img src="{{ img_url2 }}"></p>
+    {% endif %}
+  </div>
+  <div>
+    {% if img_url3 %}
+    <p>top3: "{{ img_url3 }}"</p>
+    <p><img src="{{ img_url3 }}"></p>
+    {% endif %}
+  </div>
+{% endblock %}

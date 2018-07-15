@@ -21,7 +21,8 @@ RUN pip install \
     tensorflow \
     h5py \
     keras \
-    flask
+    flask \
+    flask-bootstrap
 
 RUN ln -s /usr/bin/python3.6 /usr/bin/python
 
@@ -32,8 +33,10 @@ RUN ./configure
 RUN sed -i -e "s/PYTHONCFLAGS =  -I\/usr\/lib\/python3\/dist-packages\/numpy\/core\/include/PYTHONCFLAGS =  -I\/usr\/include\/python3.6\/ -I\/usr\/lib\/python3\/dist-packages\/numpy\/core\/include/g" makefile.inc
 RUN make && make install && make py
 
+#ADD ./data/images/ /work/data/images/
+
 ARG project_dir=/app/
-ADD ./script/app.py $project_dir
+ADD ./app/ $project_dir
 WORKDIR $project_dir
 ADD ./data/trained_index/ /app/trained_index/
 
