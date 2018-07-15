@@ -20,7 +20,7 @@ RUN pip install \
     numpy \
     tqdm \
     pillow \
-    tensorflow==1.7.1 \
+    tensorflow \
     h5py \
     keras
 
