@@ -7,25 +7,13 @@
   <div>
     {% if query_url %}
     <h3>query image: "{{ query_url }}"</h3>
-    <p><img src="{{ query_url }}"></p>
+    <p><img src="{{ query_url }}" width="300" height="300"></p>
     {% endif %}
   </div>
   <div>
     {% if img_url1 %}
-    <p>top1: "{{ img_url1 }}"</p>
-    <p><img src="{{ img_url1 }}"></p>
-    {% endif %}
-  </div>
-  <div>
-    {% if img_url2 %}
-    <p>top2: "{{ img_url2 }}"</p>
-    <p><img src="{{ img_url2 }}"></p>
-    {% endif %}
-  </div>
-  <div>
-    {% if img_url3 %}
-    <p>top3: "{{ img_url3 }}"</p>
-    <p><img src="{{ img_url3 }}"></p>
+    <p>top1: "{{ img_url1 }}", top2: "{{ img_url2 }}", top3: "{{ img_url3 }}"</p>
+    <p><img src="{{ img_url1 }}" width="300" height="300"> <img src="{{ img_url2 }}" width="300" height="300"> <img src="{{ img_url3 }}" width="300" height="300"></p>
     {% endif %}
   </div>
 {% endblock %}
