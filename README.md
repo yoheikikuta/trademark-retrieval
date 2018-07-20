@@ -26,3 +26,8 @@ docker run --rm -it -v $PWD/data/images:/app/static -p 5000:5000 [app image tag]
 ```
 
 Visit `localhost:5000` on your local browser and upload a query image.
+
+
+## Screenshot
+
+![screenshot](https://github.com/yoheikikuta/trademark-retrieval/blob/images/screenshot.png)
