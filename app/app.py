@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, render_template, send_from_directory
 from flask_bootstrap import Bootstrap
+from werkzeug import secure_filename
 import json
 
 import tensorflow as tf
@@ -54,8 +55,9 @@ def index():
 @app.route('/retrieval', methods=['POST','GET'])
 def retrieval():
     query_img = request.files['img_data']
-    query_img.save(os.path.join("/app/static/", "query.jpg"))
-    preprocessed_img = preprocess_img(os.path.join("/app/static/", "query.jpg"))
+    filename = secure_filename(query_img.filename)
+    query_img.save(os.path.join("/app/static/", filename))
+    preprocessed_img = preprocess_img(os.path.join("/app/static/", filename))
     with graph.as_default():
         feature = model.predict(preprocessed_img)
 
@@ -63,7 +65,7 @@ def retrieval():
 
     # Return answer
     return render_template("img.html"
-            , query_url="query.jpg"
+            , query_url=filename
             , img_url1=top3_similar_files[0]
             , img_url2=top3_similar_files[1]
             , img_url3=top3_similar_files[2])
