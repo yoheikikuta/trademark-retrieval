@@ -11,12 +11,15 @@ docker build -t [image tag] -f Dockerfile .
 docker run --rm -it -v $PWD:/work -p 8888:8888 [image tag]
 ```
 
-In the caintainer,
+In the caintainer, execute the following commands to download data and create index.
 
 ```
 python script/download-trademark-images.py
 python script/create-index.py
 ```
+
+In a CPU environment, it takes about ten minutes to the downloading and about 1.5 horus to the indexing.
+
 
 ## Launch Web app
 
