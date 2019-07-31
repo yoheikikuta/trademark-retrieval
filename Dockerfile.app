@@ -1,5 +1,6 @@
-FROM ubuntu:17.10
-MAINTAINER Yohei Kikuta <diracdiego@gmail.com>
+FROM ubuntu:18.04
+LABEL maintainer="diracdiego@gmail.com"
+LABEL version="1.0"
 
 RUN apt-get update
 
@@ -16,24 +17,26 @@ RUN apt-get install -y \
 RUN pip3 install --upgrade pip
 
 RUN pip install \
+    jupyter \
     numpy \
+    tqdm \
     pillow \
-    tensorflow \
+    tensorflow==1.10.0 \
     h5py \
-    keras \
-    flask \
-    flask-bootstrap
+    keras==2.2.2
 
 RUN ln -s /usr/bin/python3.6 /usr/bin/python
 
 WORKDIR /
-RUN git clone -b fix-test-tmpfile https://github.com/yoheikikuta/faiss.git
+RUN git clone https://github.com/yoheikikuta/faiss.git
 WORKDIR /faiss
 RUN ./configure
 RUN sed -i -e "s/PYTHONCFLAGS =  -I\/usr\/lib\/python3\/dist-packages\/numpy\/core\/include/PYTHONCFLAGS =  -I\/usr\/include\/python3.6\/ -I\/usr\/lib\/python3\/dist-packages\/numpy\/core\/include/g" makefile.inc
 RUN make && make install && make py
 
-#ADD ./data/images/ /work/data/images/
+RUN pip install \
+    flask \
+    flask-bootstrap
 
 ARG project_dir=/app/
 ADD ./app/ $project_dir
